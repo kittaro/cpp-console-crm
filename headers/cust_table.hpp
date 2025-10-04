@@ -1,6 +1,6 @@
 /*
 cust_table.hpp
-Member function definitions for cust_table class
+определения функций-членов для класса cust_table
 */
 
 #include <fstream>
@@ -9,7 +9,7 @@ Member function definitions for cust_table class
 #include <limits>
 #include "cust_table.h"
 
-// Function to get max id in customer table
+// функция для получения максимального id в таблице клиентов
 //int cust_table::get_max_id() {
     //return hashtable.end()->first;
 //}
@@ -23,15 +23,15 @@ int cust_table::get_max_id() {
     return max_id;
 }
 
-// Print the customer table in a neatly formatted way
+// напечатать таблицу клиентов в аккуратно отформатированном виде
 void cust_table::print_table(int n_rows) {
-    // Main Header
+    // основной заголовок
     cout << std::left << "|" << std::setw(85) << std::setfill('-') << "-" << "|" << endl
     << "|" << std::setw(85) << std::setfill(' ') << " " << "|" << endl
     << "|" << std::setw(85) << "Nuts n' Bolts Customer Management System" << "|" << endl
     << "|" << std::setw(85) << std::setfill(' ') << " " << "|" << endl;
 
-    // Start headers line
+    // начать строку заголовков
     cout << "|" << std::setw(5) << std::setfill('=') << "="
     << "|" << std::setw(20) << "="
     << "|" << std::setw(15) << "="
@@ -40,7 +40,7 @@ void cust_table::print_table(int n_rows) {
     << "|" << std::setw(15) << "="
     << "|" << std::setfill(' ') << endl;
 
-    // Column headers
+    // заголовки столбцов
     std::cout << std::left
     << "|" << std::setw(5) << "ID"
     << "|" << std::setw(20) << "Name"
@@ -57,7 +57,7 @@ void cust_table::print_table(int n_rows) {
     << "|" << std::setw(15) << "="
     << "|" << std::setfill(' ') << endl;
     int iter = 0;
-    // Print table rows
+    // напечатать строки таблицы
     for (auto it = hashtable.begin(); it != hashtable.end(); ++it, ++iter) {
             if (iter == n_rows) {
                 cout << "Showing " + std::to_string(iter) + " of " + std::to_string(hashtable.size()) + " customers." << endl;
@@ -86,14 +86,14 @@ void cust_table::print_table(int n_rows) {
     }
 }
 
-// Write customer table to local db
+// записать таблицу клиентов в локальную базу данных
 void cust_table::write_data() {
-    // Use of stream to output to filename, truncate before writing
+    // использование потока для вывода в имя файла
     std::ofstream ofs;
-    // Open stream with trunc option to erase old data
+    // открыть поток с опцией trunc для стирания старых данных
     ofs.open(cust_table::filename,ofstream::trunc);
     for (auto it = hashtable.begin(); it != hashtable.end(); ++it) {
-            // Write each item in cust table to csv
+            // записать каждый элемент в таблице клиентов в csv
             ofs << it->first << ',';
             ofs << it->second.name << ',';
             ofs << it->second.city << ',';
@@ -105,7 +105,7 @@ void cust_table::write_data() {
     ofs.close();
 }
 
-// Read customer data from local db
+// прочитать данные клиентов из локальной бд
 void cust_table::read_data() {
     std::ifstream ifs;
     std::string line;
@@ -126,7 +126,7 @@ void cust_table::read_data() {
     }
 }
 
-// Get total sales of all customers
+// получить общие продажи всех клиентов
 int cust_table::get_total_sales() {
     int total_sales_all = 0;
     for (auto it = hashtable.begin(); it != hashtable.end(); ++it) {

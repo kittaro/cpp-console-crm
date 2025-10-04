@@ -1,12 +1,12 @@
-/* Interface class
-Handles table interface and user inputs */
+/* класс интерфейса
+обрабатывает интерфейс таблицы и пользовательские вводы */
 
 #include <iostream>
 #include "cust_table.h"
 
 class interface {
     public:
-        // Pointer to customer table - all input actions will affect this table
+        // указатель на таблицу клиентов (все действия ввода повлияют на эту таблицу)
         cust_table& customer_table;
 
         interface(cust_table& i_cust_table)

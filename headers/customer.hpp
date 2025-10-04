@@ -1,12 +1,12 @@
 /*
 customer.hpp
-Member function definitions of customer class
+определения функций-членов класса клиента
 */
 
 #include "customer.h"
 #include <string>
 
-// Function to format date to YYYY-MM-DD
+// функция для форматирования даты в yyyy-mm-dd
 std::string customer::format_date()
 {
     std::string date = std::to_string(customer::last_visit);

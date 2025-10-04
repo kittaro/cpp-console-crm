@@ -1,8 +1,8 @@
 /* interface.hpp
-interface member function definitions */
+определения функций-членов интерфейса */
 #include "interface.h"
 
-// This function handles adding a new customer to the customer table
+// эта функция обрабатывает добавление нового клиента в таблицу клиентов
 void interface::handle_add_cust() {
     std::string name, city, state;
     int last_visit, total_sales;
@@ -19,18 +19,18 @@ void interface::handle_add_cust() {
     cout << "Enter Customer's Total Sales: ";
     cin >> total_sales;
     customer new_cust(last_id+1,name,last_visit,total_sales,city,state);
-    // The id of the new customer should be the max existing ID incremented by 1
+    // id нового клиента должен быть максимальным существующим id, увеличенным на 1
     customer_table.insert_row(last_id+1,new_cust);
 }
 
-// Function that handles deleting a customer from the table
+// функция, которая обрабатывает удаление клиента из таблицы
 void interface::handle_delete_cust() {
     int delete_id;
     cout << "Enter customer ID to delete: ";
     cin >> delete_id;
-    // Search table for the id
+    // поиск id в таблице
     auto search = customer_table.hashtable.find(delete_id);
-    // If the id is found then carry out process else warn user
+    // если id найден, выполнить процесс, иначе предупредить пользователя
     if (search != customer_table.hashtable.end()) {
         cout << "Found customer ID " << search->first << " with the following information: " << endl;
         cout << "Name: " << search->second.name << endl;
@@ -52,12 +52,12 @@ void interface::handle_delete_cust() {
     }
 }
 
-// Function to handle updating customer
+// функция для обработки обновления клиента
 void interface::handle_update_cust() {
     int update_id;
     cout << "Enter customer ID to update: ";
     cin >> update_id;
-    // Search for customer to update - if found carry out aciton else warn user
+    // поиск клиента для обновления - если найден, выполнить действие, иначе предупредить пользователя
     auto search = customer_table.hashtable.find(update_id);
     if (search != customer_table.hashtable.end()) {
         std::string name, city, state;
@@ -85,7 +85,7 @@ void interface::handle_update_cust() {
     }
 }
 
-// Function that handles showing options menu to user
+// функция, которая обрабатывает показ меню опций пользователю
 void interface::show_options() {
     cout << "What would you like to do?" << endl;
     cout << "1 - Add Customer" << endl
@@ -96,23 +96,23 @@ void interface::show_options() {
     << "6 - Exit Program" << endl;
 }
 
-// Function that handles showing user interface
+// функция, которая обрабатывает показ пользовательского интерфейса
 void interface::show_interface() {
     customer_table.print_table(customer_table.get_max_id());
     int choice;
-    // Run until user quits
+    // выполнять до выхода пользователя
     do {
         show_options();
         cin >> choice;
-        // Add customer
+        // добавить клиента
         if (choice == 1)
         {
             handle_add_cust();
             customer_table.print_table(customer_table.get_max_id());
-        } else if (choice == 2) // Update customer
+        } else if (choice == 2) // обновить клиента
         {
             handle_update_cust();
-        } else if (choice == 3) // Show n rows of table
+        } else if (choice == 3) // показать n строк таблицы
         {
             cout << "Select number of customers to show (Enter '*' to show all): " << endl;
             string n_show;
@@ -123,17 +123,17 @@ void interface::show_interface() {
                 customer_table.print_table(stoi(n_show));
             }
             customer_table.write_data();
-        } else if (choice == 4) // Delete customer
+        } else if (choice == 4) // удалить клиента
         {
             handle_delete_cust();
         } else if (choice == 5) {
             cout << "Total company sales are: $"
             << customer_table.get_total_sales() << endl;
-        } else if (choice == 6) // Quit program
+        } else if (choice == 6) // выйти из программы
         {
             continue;
         } else {
-            cout << "Please enter a number listed from the menu options (1-6)" << endl; // Fail safe
+            cout << "Please enter a number listed from the menu options (1-6)" << endl; // защита от сбоев
         }
     } while (choice != 6);
 }

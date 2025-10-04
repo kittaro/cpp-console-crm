@@ -1,13 +1,13 @@
 /* customer.h
-customer class for CRM
-Class that handles and stores information about the individual customer*/
+класс клиента для crm
+класс, который обрабатывает и хранит информацию об отдельном клиенте*/
 
 #include <iostream>
 #include <fstream>
 
 using namespace std;
 
-// Declare customer class
+// объявить класс клиента
 class customer {
     public:
         int id;

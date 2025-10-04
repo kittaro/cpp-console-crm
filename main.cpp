@@ -1,19 +1,19 @@
 /* main.cpp
-Final project
-Nuts n' Bolts Simple CRM
-Name: Jarred Glaser
-Class: SDEV-240
-Description: This is a simple CRM console application. See Documentation For more details.*/
+итоговый проект
+простая crm система nuts n' bolts
+имя: jarred glaser
+класс: sdev-240
+описание: это простое консольное приложение crm. см. документацию для более подробной информации.*/
 
 #include <iostream>
 #include "headers/interface.hpp"
 
 int main() {
-    // Initialize the customer table
+    // инициализировать таблицу клиентов
     cust_table table("cust_data.csv");
-    // Create an interface object
+    // создать объект интерфейса
     interface main_menu(table);
-    // Run the main interface process
+    // запустить основной процесс интерфейса
     main_menu.show_interface();
     return 0;
 }

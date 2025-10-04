@@ -1,8 +1,8 @@
 /* table.h
-table class header file. 
-Used as the base table class that the customer will inherit  */
+файл заголовка класса таблицы.
+используется как базовый класс таблицы, который наследует клиент */
 
-// Avoid repeat loading file
+// избежать повторной загрузки файла
 #ifndef __table_H_INCLUDED__
 #define __table_H_INCLUDED__
 
@@ -11,7 +11,7 @@ Used as the base table class that the customer will inherit  */
 
 using namespace std;
 
-// Create as a template so class can be expanded upon in future updates
+// создать как шаблон, чтобы класс можно было расширить в будущих обновлениях
 template <typename K, typename V>
 class table  {
     public:
@@ -20,7 +20,7 @@ class table  {
         void insert_row(K key,V value);
 };
 
-// Since we are using a template class we include the table.cpp at the bottom
+// поскольку шаблонный класс, включаем table.cpp внизу
 #include "table.hpp"
 
 #endif

@@ -1,8 +1,8 @@
 /* cust_table.h
-Customer table class for CRM
-Inherits from base table class */
+класс таблицы клиентов для crm
+наследуется от базового класса таблицы */
 
-// Avoid repeat loading file
+// избежать повторной загрузки файла
 #ifndef __cust_table_H_INCLUDED__ 
 #define __cust_table_H_INCLUDED__ 
 
@@ -16,16 +16,16 @@ class cust_table : public table<int,customer>  {
     public:
         std::string filename;
 
-        // Constructor - assign params and fill table with data on class creation
+        // конструктор (присвоить параметры и заполнить таблицу данными при создании класса)
         cust_table(std::string i_filename)
         :filename(i_filename)
         {cust_table::read_data();};
-        // Destructor - save the data to local db and empty out in memory table
+        // деструктор (сохранить данные в локальную базу данных и очистить таблицу в памяти)
         ~cust_table() {
             write_data();
             hashtable.clear();
         }
-        // Member functions
+        // функции-члены
         void print_table(int n_rows);
         void read_data();
         void write_data();
@@ -33,7 +33,7 @@ class cust_table : public table<int,customer>  {
         int get_total_sales();
 };
 
-// Because this class inherits from a template class, we include class definitions script at bottom
+// наследуется от шаблонного класса, вкл скрипт определений класса внизу
 #include "cust_table.hpp"
 
 #endif
